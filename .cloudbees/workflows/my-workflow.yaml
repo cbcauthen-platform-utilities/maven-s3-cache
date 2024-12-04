@@ -13,8 +13,11 @@ jobs:
         name: Log into AWS
         with:
           aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.aws_access_key_id }}
+          aws-secret-access-key: ${{ secrets.aws_secret_access_key }}
           role-to-assume: infra-admin
           role-duration-seconds: "3600"
+          aws-session-token: $ {{ secrets.aws_session_token }}
       - uses: docker://golang:1.20.3-alpine3.17
         name: Finish Script
         shell: sh
