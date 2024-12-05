@@ -21,7 +21,7 @@ jobs:
         with:
           bucket-name: cwroble-caching-demo
           file-path: petclinic-v3.3.4.tar.gz
-          s3-path: s3://cwroble-caching-demo/platform-cache/maven/petclinic-v3.3.4.tar.gz
+          s3-path: platform-cache/maven/petclinic-v3.3.4.tar.gz
       - uses: docker://golang:1.20.3-alpine3.17
         name: Finish Script
         shell: sh
