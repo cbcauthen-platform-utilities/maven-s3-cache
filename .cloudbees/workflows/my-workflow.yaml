@@ -7,21 +7,6 @@ on:
       - "**"
   workflow_dispatch:
 jobs:
-  pre-flight:
-    steps:
-      - uses: cloudbees-io/s3-download-object@v1
-        name: Retrieve Maven Cache
-        with:
-          bucket-name: cwroble-caching-demo
-          file-path: petclinic-v3.3.4.tar.gz
-          s3-path: platform-cache/maven/petclinic-v3.3.4.tar.gz
-      - uses: docker://golang:1.20.3-alpine3.17
-        name: Finish Script
-        shell: sh
-        run: |
-          ls -l
-          echo "We Are Done"
-    needs: appApproval
   prep-env:
     environment: ""
     steps:
@@ -43,3 +28,19 @@ jobs:
       disallowLaunchByUser: false
       instructions: ""
     needs: prep-env
+  pre-flight:
+    steps:
+      - uses: cloudbees-io/s3-download-object@v1
+        name: Retrieve Maven Cache
+        with:
+          bucket-name: cwroble-caching-demo
+          file-path: petclinic-v3.3.4.tar.gz
+          s3-path: platform-cache/maven/petclinic-v3.3.4.tar.gz
+      - uses: docker://golang:1.20.3-alpine3.17
+        name: Finish Script
+        shell: sh
+        run: |
+          ls -l
+          echo "We Are Done"
+    needs: appApproval
+
