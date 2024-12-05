@@ -22,12 +22,12 @@ jobs:
           bucket-name: cwroble-caching-demo
           file-path: petclinic-v3.3.4.tar.gz
           s3-path: platform-cache/maven/petclinic-v3.3.4.tar.gz
+      - uses: docker://releases-docker.jfrog.io/jfrog/jfrog-cli-v2-jf
+        name: jf cli
+        run: jf -v
       - uses: docker://golang:1.20.3-alpine3.17
         name: Finish Script
         shell: sh
         run: |
           ls -l
           echo "We Are Done"
-      - uses: docker://releases-docker.jfrog.io/jfrog/jfrog-cli-v2-jf
-        name: jf cli
-        run: jf -v
